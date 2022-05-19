@@ -1,0 +1,51 @@
+devnum	release_dt	make	model	dev_type
+1	2008-10-21 00:00:00.0	Sorrento	F00L	phone
+2	2010-04-19 00:00:00.0	Titanic	2100	phone
+3	2011-02-18 00:00:00.0	MeeToo	3.0	phone
+4	2011-09-21 00:00:00.0	MeeToo	3.1	phone
+5	2008-10-21 00:00:00.0	iFruit	1	phone
+6	2011-11-02 00:00:00.0	iFruit	3	phone
+7	2010-05-20 00:00:00.0	iFruit	2	phone
+8	2013-07-02 00:00:00.0	iFruit	5	phone
+9	2008-10-21 00:00:00.0	Titanic	1000	phone
+10	2008-10-21 00:00:00.0	MeeToo	1.0	phone
+11	2011-02-28 00:00:00.0	Sorrento	F21L	phone
+12	2012-10-25 00:00:00.0	iFruit	4	phone
+13	2011-11-21 00:00:00.0	Sorrento	F23L	phone
+14	2010-05-25 00:00:00.0	Titanic	2200	phone
+15	2010-06-20 00:00:00.0	Ronin	Novelty Note 1	phone
+16	2012-07-21 00:00:00.0	Titanic	2500	phone
+17	2013-04-11 00:00:00.0	Ronin	Novelty Note 3	phone
+18	2011-10-02 00:00:00.0	Ronin	Novelty Note 2	phone
+19	2013-07-02 00:00:00.0	Ronin	Novelty Note 4	phone
+20	2012-07-21 00:00:00.0	iFruit	3A	phone
+21	2011-02-18 00:00:00.0	Titanic	2300	phone
+22	2012-03-12 00:00:00.0	Sorrento	F24L	phone
+23	2010-11-01 00:00:00.0	Sorrento	F20L	phone
+24	2012-10-21 00:00:00.0	Sorrento	F32L	phone
+25	2011-10-01 00:00:00.0	Sorrento	F22L	phone
+26	2012-06-21 00:00:00.0	Sorrento	F30L	phone
+27	2009-10-25 00:00:00.0	Sorrento	F10L	phone
+28	2012-09-21 00:00:00.0	Titanic	4000	phone
+29	2013-11-01 00:00:00.0	Sorrento	F41L	phone
+30	2013-08-01 00:00:00.0	Titanic	DeckChairs	phone
+31	2012-08-04 00:00:00.0	MeeToo	4.1	phone
+32	2012-07-21 00:00:00.0	MeeToo	4.0	phone
+33	2010-05-15 00:00:00.0	MeeToo	2.0	phone
+34	2009-12-21 00:00:00.0	Titanic	2000	phone
+35	2012-09-21 00:00:00.0	MeeToo	5.0	phone
+36	2013-08-01 00:00:00.0	MeeToo	5.1	phone
+37	2012-08-04 00:00:00.0	Titanic	3000	phone
+38	2008-11-25 00:00:00.0	Titanic	1100	phone
+39	2013-03-11 00:00:00.0	Sorrento	F33L	phone
+40	2013-02-11 00:00:00.0	iFruit	4A	phone
+41	2012-07-04 00:00:00.0	Sorrento	F31L	phone
+42	2013-06-26 00:00:00.0	Sorrento	F40L	phone
+43	2009-03-11 00:00:00.0	Sorrento	F01L	phone
+44	2010-04-10 00:00:00.0	Sorrento	F11L	phone
+45	2011-09-21 00:00:00.0	Titanic	2400	phone
+46	2013-10-02 00:00:00.0	Ronin	S4	phone
+47	2010-05-20 00:00:00.0	Ronin	S1	phone
+48	2013-02-11 00:00:00.0	Ronin	S3	phone
+49	2012-07-21 00:00:00.0	Ronin	S2	phone
+50	2013-10-02 00:00:00.0	iFruit	5A	phone
