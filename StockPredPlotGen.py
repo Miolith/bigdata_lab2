@@ -12,18 +12,33 @@ from pyspark.ml.regression import LinearRegression
 from pyspark.ml import Pipeline
 import pyspark
 from pyspark.sql import SparkSession
+import os
+
+try:
+    FILE_PATH = input("Please enter the path of the source stock csv file you wish to use : ")
+    FILE_NAME = FILE_PATH.split("/")[-1].split(".csv")[0]
+except:
+    raise Exception("Invalid File Type or Path")
+
 
 spark = SparkSession.builder.master("local[1]").appName("StockPrediction").getOrCreate()
-df = spark.read.csv("etfs/SPY.csv")
-df = df.withColumnRenamed("_c0","Date").withColumnRenamed("_c1","Open").withColumnRenamed("_c2","High").withColumnRenamed("_c3","Low").withColumnRenamed("_c4","Close").withColumnRenamed("_c5","Adj Close").withColumnRenamed("_c6","Volume")
-df = df.where(df.Date != "Date")
-days = lambda i: i * 86400
-w = (Window.orderBy(to_timestamp(F.col("Date")).cast('long')).rangeBetween(-days(7), 0))
-w2 = Window.partitionBy().orderBy("date")
-df = df.withColumn('rolling_average', F.avg("Close").over(w))
-df = df.withColumn('is_higher_than_rollavg', F.when(F.lag(df["Close"]).over(w2) < F.col("Close"), 'yep').otherwise('nah'))
-df = df.withColumn('diffOpenClose', df["Open"] - df["Close"])
-df = df.withColumn('diffHighLow', df["High"] - df["Low"])
+
+def read_file(FILE_PATH):
+    df = spark.read.csv(FILE_PATH)
+    if "_c7" in df.columns:
+        df = df.drop("_c7")
+    df = df.withColumnRenamed("_c0","Date").withColumnRenamed("_c1","Open").withColumnRenamed("_c2","High").withColumnRenamed("_c3","Low").withColumnRenamed("_c4","Close").withColumnRenamed("_c5","Adj Close").withColumnRenamed("_c6","Volume")
+    df = df.where(df.Date != "Date")
+    days = lambda i: i * 86400
+    w = (Window.orderBy(to_timestamp(F.col("Date")).cast('long')).rangeBetween(-days(7), 0))
+    w2 = Window.partitionBy().orderBy("date")
+    df = df.withColumn('rolling_average', F.avg("Close").over(w))
+    df = df.withColumn('is_higher_than_rollavg', F.when(F.lag(df["Close"]).over(w2) < F.col("Close"), 'yep').otherwise('nah'))
+    df = df.withColumn('diffOpenClose', df["Open"] - df["Close"])
+    df = df.withColumn('diffHighLow', df["High"] - df["Low"])
+    return df
+
+df = read_file(FILE_PATH)
 
 def linearRegression3features(df):
     df = df.withColumn('Open', F.col("Open").cast('float'))
@@ -132,5 +147,11 @@ def saveGraph(algo, df, name, title):
     plt.savefig(name)
 
 if __name__ == "__main__":
-    pass # put the graph you want to gen here
-    # saveGraph(linearRegressionAlone, df, "linearRegressionAlone.jpg", "linearRegression on 1 features")
+    os.system("mkdir %s" % (FILE_NAME))
+    saveGraph(linearRegressionAlone, df, "%s/linearRegressionAlone-%s.jpg" % (FILE_NAME,FILE_NAME), "%s linearRegression on 1 features" % (FILE_NAME))
+    plt.clf()
+    df = read_file(FILE_PATH)
+    saveGraph(linearRegression3features, df, "%s/linearRegression3features-%s.jpg" % (FILE_NAME,FILE_NAME), "%s linearRegression on 3 features" % (FILE_NAME))
+    plt.clf()
+    df = read_file(FILE_PATH)
+    saveGraph(DecisionTreeRegressorLessCategorical, df, "%s/DecisionTreeRegressor-%s.jpg" % (FILE_NAME,FILE_NAME), "%s DecisionTreeRegressor on 4 features" % (FILE_NAME))
