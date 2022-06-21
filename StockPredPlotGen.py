@@ -138,11 +138,12 @@ def DecisionTreeRegressorLessCategorical(df):
 def saveGraph(algo, df, name, title):
     linear3_score = algo(df)
     dtf = linear3_score[1].toPandas()
+    dtf['Date'] = pd.to_datetime(dtf['Date'])
+    dtf = dtf.set_index("Date")
     plt.rcParams["figure.figsize"] = (12.8,9.6)
     plt.title(title+" : Root Mean Squared Error = "+str(linear3_score[0]))
-    plt.xticks([])
-    plt.plot(dtf["Date"], dtf["Close"].to_list())
-    plt.plot(dtf["Date"], dtf["prediction"].to_list())
+    dtf["Close"].plot()
+    dtf["prediction"].plot()
     plt.legend(['Reality',"Prediction"])
     plt.savefig(name)
 
